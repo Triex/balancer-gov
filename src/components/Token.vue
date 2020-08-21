@@ -1,7 +1,7 @@
 <template>
   <img
     :src="
-      `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`
+      `https://ropsten.rarible.com/static/d92a47dec5b1e2e530cd63f04fbdc7a3.png`
     "
     class="d-inline-block bg-gray-9 v-align-middle line-height-0 circle"
     :style="{

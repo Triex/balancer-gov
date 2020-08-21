@@ -29,7 +29,7 @@
             class="flex-auto text-gray mr-1"
           />
           <span
-            v-text="`${_numeral(gov.votingPower)} ${gov.namespace.symbol}`"
+            v-text="`${_numeral(this.votingPower)} ${gov.namespace.symbol}`"
           />
         </div>
       </div>
@@ -59,7 +59,15 @@ import { mapActions } from 'vuex';
 import namespaces from '@/namespaces.json';
 
 export default {
-  props: ['open', 'namespace', 'proposal', 'id', 'selectedChoice', 'snapshot'],
+  props: [
+    'open',
+    'namespace',
+    'proposal',
+    'id',
+    'selectedChoice',
+    'snapshot',
+    'votingPower'
+  ],
   data() {
     return {
       loading: false,

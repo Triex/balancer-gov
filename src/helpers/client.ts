@@ -4,6 +4,8 @@ if (domainName === 'beta.vote.balancer.finance')
   defaultRestApi = 'https://beta.vote.balancer.finance';
 if (domainName === 'vote.balancer.finance')
   defaultRestApi = 'https://vote.balancer.finance';
+if (domainName === 'vote.rarible.com')
+  defaultRestApi = 'https://vote-api.rarible.com';
 const restApi = process.env.VUE_APP_REST_API || defaultRestApi;
 
 class Client {

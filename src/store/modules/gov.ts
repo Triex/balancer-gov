@@ -12,11 +12,11 @@ import { version } from '@/../package.json';
 import namespaces from '@/namespaces.json';
 
 const state = {
-  namespace: namespaces['balancer'],
+  namespace: namespaces['rarible'],
   votingPower: 0,
   votingPowerByPools: {},
   walletBalance: 0,
-  snapshot: 10665000
+  snapshot: 100000000
 };
 
 const mutations = {
@@ -131,14 +131,10 @@ const actions = {
       });
       // @ts-ignore
       const addresses = Object.keys(votes);
-      let votingPowers = {};
-      if (!bptDisabled) {
-        votingPowers = await dispatch('getVotingPowers', {
-          token: result.proposal.msg.token,
-          blockTag,
-          addresses
-        });
-      }
+      const votingPowers = {};
+      addresses.forEach(a => {
+        votingPowers[a] = 0;
+      });
       result.votes = Object.fromEntries(
         Object.entries(result.votes)
           .map((vote: any) => {
@@ -181,6 +177,8 @@ const actions = {
           0
         )
       };
+      const myVotingPower = await dispatch('getVotingPower', { address: rootState.web3.account, snapshot })
+      result.votingPower = myVotingPower.votingPower;
       commit('GET_PROPOSAL_SUCCESS');
       return result;
     } catch (e) {
@@ -212,31 +210,32 @@ const actions = {
   getMyVotingPower: async ({ commit, dispatch, rootState }) => {
     commit('GET_MY_VOTING_POWER_REQUEST');
     const address = rootState.web3.account;
-    const blockTag =
-      state.snapshot > rootState.web3.blockNumber ? 'latest' : state.snapshot;
     try {
-      const myVotingPower =
-        (await dispatch('getVotingPowersByPools', {
-          blockTag,
-          token: state.namespace.token,
-          addresses: [address]
-        })) || {};
-      const walletBalance = await dispatch('getBalance', {
-        blockTag,
-        token: state.namespace.token
-      });
-      commit('GET_MY_VOTING_POWER_SUCCESS', {
-        walletBalance,
-        votingPower: Object.values(myVotingPower[address]).reduce(
-          (a: any, b: any) => a + b,
-          walletBalance
-        ),
-        votingPowerByPools: myVotingPower[address]
-      });
-      return myVotingPower;
+      const result = await dispatch('getVotingPower', { address, snapshot: state.snapshot })
+      commit('GET_MY_VOTING_POWER_SUCCESS', result);
+      return result.myVotingPower;
     } catch (e) {
       commit('GET_MY_VOTING_POWER_FAILURE', e);
     }
+  },
+  getVotingPower: async ({ commit, dispatch, rootState }, { address, snapshot }) => {
+    const blockTag =
+      snapshot > rootState.web3.blockNumber ? 'latest' : parseInt(snapshot);
+    const myVotingPower = {}
+    myVotingPower[address] = {};
+    const walletBalance = await dispatch('getBalance', {
+      blockTag,
+      token: state.namespace.token
+    });
+    return {
+      walletBalance,
+      votingPower: Object.values(myVotingPower[address]).reduce(
+        (a: any, b: any) => a + b,
+        walletBalance
+      ),
+      votingPowerByPools: myVotingPower[address],
+      myVotingPower
+    };
   }
 };
 

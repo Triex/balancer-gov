@@ -172,6 +172,7 @@ export default {
       this.proposal = proposalObj.proposal;
       this.votes = proposalObj.votes;
       this.results = proposalObj.results;
+      this.votingPower = proposalObj.votingPower;
     }
   },
   async created() {

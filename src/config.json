@@ -1,10 +1,10 @@
 {
   "master": {
     "network": "homestead",
-    "chainId": 1,
+    "chainId": 3,
     "subgraphUrl": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer",
-    "hubUrl": "https://vote.balancer.finance",
-    "multicall": "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441",
+    "hubUrl": "https://vote.rarible.com",
+    "multicall": "0x53c43764255c17bd724f74c4ef150724ac50a3ed",
     "connectors": {
       "injected": {
         "id": "injected",

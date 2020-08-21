@@ -1,29 +1,15 @@
 {
-  "balancer": {
-    "key": "balancer",
-    "symbol": "BAL",
-    "name": "Balancer",
-    "token": "0xba100000625a3754423978a60c9317c58a424e3D",
+  "rarible": {
+    "key": "rarible",
+    "symbol": "RARI",
+    "name": "Rarible",
+    "token": "0x6a55102635f35eb0ca8d1e0c69a8a35e55796c41",
     "verified": [
-      "0x24A12Fa313F57aF541d447c594072A992c605DCf",
-      "0x8BBE4Ac64246d600BC2889ef5d83809D138F03DF",
-      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
-      "0x107174D70b33523E83711EA4C3F4229cdB8A7Cb1",
-      "0x0b21Dbc34A953a35dFA629ad31e1cEE3dE0433Fb",
-      "0x40FDAa1bff3BB87bC70955Be6657edBFdBeb122e"
+      "0x002eD05478C75974E08F0811517aa0e3eDDc1380",
+      "0x76C5855e93bD498B6331652854c4549d34Bc3A30",
+      "0xe31dAB26945BE4943CB653E8437D49100f40c0b2",
+      "0x3f46680099cF623163C96747a8ADdB85a1dA1Cd1"
     ],
     "visible": true
-  },
-  "dai": {
-    "key": "dai",
-    "symbol": "DAI",
-    "name": "DAI",
-    "token": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-    "verified": [
-      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
-      "0x107174D70b33523E83711EA4C3F4229cdB8A7Cb1",
-      "0x0b21Dbc34A953a35dFA629ad31e1cEE3dE0433Fb"
-    ],
-    "visible": false
   }
 }
