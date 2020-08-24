@@ -177,8 +177,12 @@ const actions = {
           0
         )
       };
-      const myVotingPower = await dispatch('getVotingPower', { address: rootState.web3.account, snapshot })
-      result.votingPower = myVotingPower.votingPower;
+      if (rootState.web3.account) {
+        const myVotingPower = await dispatch('getVotingPower', { address: rootState.web3.account, snapshot })
+        result.votingPower = myVotingPower.votingPower;
+      } else {
+        result.votingPower = 0;
+      }
       commit('GET_PROPOSAL_SUCCESS');
       return result;
     } catch (e) {
